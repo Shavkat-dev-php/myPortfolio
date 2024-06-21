@@ -19,3 +19,7 @@ $captcha_success = $verify->isSuccess();
 if (!$captcha_success) {
     exit('Error: Invalid reCAPTCHA solution');
 }
+
+// Если reCAPTCHA пройдена успешно, продолжите с обработкой формы
+// Например, отправка письма или сохранение данных в базу данных
+?>

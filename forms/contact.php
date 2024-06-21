@@ -1,6 +1,29 @@
 <?php
+require_once('recaptcha/autoload.php');
+
+$secret_key = '6LcuC_4pAAAAAO8jWM6bVwmfgy4LPEDoH3JB0Yta';
+$recaptcha = new \ReCaptcha\ReCaptcha($secret_key);
+
+if (!isset($_POST['g-recaptcha-response'])) {
+    exit('Error: No reCAPTCHA value submitted');
+}
+
+$verify = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
+
+if (!$verify) {
+    exit('Error: Failed to connect to Google reCAPTCHA API');
+}
+
+$captcha_success = $verify->isSuccess();
+
+if (!$captcha_success) {
+    exit('Error: Invalid reCAPTCHA solution');
+}
+
+?>
+
+<?php
 require 'PHP_Email_Form/PHP_Email_Form.php';
-require_once('captcha.php');
 
 $receiving_email_address = 'shavkatphpdev@gmail.com';
 
@@ -30,10 +53,5 @@ if ($contact->send()) {
     echo json_encode(array("next" => "/thanks.html", "ok" => true));
 } else {
     echo json_encode(array("next" => "/error.html", "ok" => false));
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Обработка формы, отправка письма и т.д.
-    // ...
 }
 ?>
