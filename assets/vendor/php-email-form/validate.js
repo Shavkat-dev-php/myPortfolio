@@ -60,7 +60,7 @@
       .then(data => {
         thisForm.querySelector('.loading').classList.remove('d-block');
         if (data.ok) {
-          window.location.href = data.next; // Перенаправление на страницу благодарности
+          showSuccessMessage(thisForm);
         } else {
           throw new Error(data.error ? data.error : 'Form submission failed and no error message returned from: ' + action);
         }
@@ -68,6 +68,11 @@
       .catch((error) => {
         displayError(thisForm, error);
       });
+  }
+
+  function showSuccessMessage(thisForm) {
+    thisForm.querySelector('.sent-message').style.display = 'block';
+    thisForm.reset();
   }
 
   function displayError(thisForm, error) {
