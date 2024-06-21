@@ -1,5 +1,6 @@
 <?php
 require 'PHP_Email_Form/PHP_Email_Form.php';
+require_once('captcha.php');
 
 $receiving_email_address = 'shavkatphpdev@gmail.com';
 
@@ -29,5 +30,10 @@ if ($contact->send()) {
     echo json_encode(array("next" => "/thanks.html", "ok" => true));
 } else {
     echo json_encode(array("next" => "/error.html", "ok" => false));
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Обработка формы, отправка письма и т.д.
+    // ...
 }
 ?>
