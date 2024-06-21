@@ -1,6 +1,5 @@
 
 <?php
-
 require 'PHP_Email_Form/PHP_Email_Form.php';
 
 $receiving_email_address = 'shavkatphpdev@gmail.com';
@@ -25,5 +24,9 @@ $contact->add_message($_POST['name'], 'From');
 $contact->add_message($_POST['email'], 'Email');
 $contact->add_message($_POST['message'], 'Message', 10);
 
-echo $contact->send();
+if ($contact->send()) {
+    echo json_encode(array("next" => "/thanks?language=ru", "ok" => true));
+} else {
+    echo json_encode(array("next" => "/error?language=ru", "ok" => false));
+}
 ?>
