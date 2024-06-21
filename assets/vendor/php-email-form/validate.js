@@ -82,39 +82,3 @@
   }
 
 })();
-
-
-function php_email_form_submit(thisForm, action, formData) {
-  if (thisForm.querySelector('[name="g-recaptcha-response"]')) {
-      let recaptchaValue = thisForm.querySelector('[name="g-recaptcha-response"]').value;
-      action += '?recaptcha-response=' + recaptchaValue;
-  }
-
-  fetch(action, {
-      method: 'POST',
-      body: formData,
-      headers: { 'X-Requested-With': 'XMLHttpRequest' }
-  })
-      .then(response => {
-          if (response.ok) {
-              return response.json(); // Изменено на JSON
-          } else {
-              throw new Error(`${response.status} ${response.statusText} ${response.url}`);
-          }
-      })
-      .then(data => {
-          thisForm.querySelector('.loading').classList.remove('d-block');
-          if (data.ok) {
-              showSuccessMessage(thisForm);
-          } else {
-              throw new Error(data.error ? data.error : 'Form submission failed and no error message returned from: ' + action);
-          }
-      })
-      .catch((error) => {
-          displayError(thisForm, error);
-      });
-}
-function showSuccessMessage(thisForm) {
-  thisForm.querySelector('.sent-message').classList.add('d-block');
-  thisForm.reset(); // Сброс формы
-}
