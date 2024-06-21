@@ -1,9 +1,9 @@
-Copy code
+
 <?php
 
 require 'PHP_Email_Form/PHP_Email_Form.php';
 
-$receiving_email_address = 'shavkatjondungeon@gmail.com';
+$receiving_email_address = 'shavkatphpdev@gmail.com';
 
 $contact = new PHP_Email_Form;
 $contact->ajax = true;
@@ -16,7 +16,7 @@ $contact->subject = $_POST['subject'];
 // Настройки SMTP
 $contact->smtp = array(
     'host' => 'smtp.mail.ru', // Пример SMTP сервера
-    'username' => 'shavkatjondungeon@gmail.com',
+    'username' => 'shavkatphpdev@gmail.com',
     'password' => '', // Обратите внимание, что хранение пароля в коде небезопасно
     'port' => '465'
 );
