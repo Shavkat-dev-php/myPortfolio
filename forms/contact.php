@@ -1,7 +1,7 @@
 <?php
 require 'PHP_Email_Form/PHP_Email_Form.php';
 
-$receiving_email_address = 'shavkatjondungeon@gmail.com';
+$receiving_email_address = 'shavkatphpdev@gmail.com';
 
 $contact = new PHP_Email_Form;
 $contact->ajax = true;
@@ -14,7 +14,7 @@ $contact->subject = $_POST['subject'];
 // Настройки SMTP
 $contact->smtp = array(
     'host' => 'smtp.mail.ru', // Пример SMTP сервера
-    'username' => 'shavkatjondungeon@gmail.com',
+    'username' => 'shavkatphpdev@gmail.com',
     'password' => '', // Обратите внимание, что хранение пароля в коде небезопасно
     'port' => '465'
 );
@@ -26,8 +26,8 @@ $contact->add_message($_POST['message'], 'Message', 10);
 header('Content-Type: application/json'); // Установка заголовка
 
 if ($contact->send()) {
-    echo json_encode(array("next" => "/thanks?language=ru", "ok" => true));
+    echo json_encode(array("next" => "/thanks.html", "ok" => true));
 } else {
-    echo json_encode(array("next" => "/error?language=ru", "ok" => false));
+    echo json_encode(array("next" => "/error.html", "ok" => false));
 }
 ?>

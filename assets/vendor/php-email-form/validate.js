@@ -58,12 +58,11 @@
         }
       })
       .then(data => {
-        console.log("Response Data:", data); // Отладочный вывод
         thisForm.querySelector('.loading').classList.remove('d-block');
         if (data.ok) {
           window.location.href = data.next; // Перенаправление на страницу благодарности
         } else {
-          throw new Error(data ? data : 'Form submission failed and no error message returned from: ' + action);
+          throw new Error(data.error ? data.error : 'Form submission failed and no error message returned from: ' + action);
         }
       })
       .catch((error) => {

@@ -26,11 +26,22 @@ class PHP_Email_Form {
         $headers .= "Reply-To: {$this->from_email}\r\n";
         $headers .= "Content-type: text/plain; charset=UTF-8\r\n";
 
-        if(isset($this->smtp)) {
-            return $this->send_with_smtp($email_content, $headers);
+        $result = isset($this->smtp) ? $this->send_with_smtp($email_content, $headers) : $this->send_with_mail($email_content, $headers);
+
+        if ($this->ajax) {
+            header('Content-Type: application/json');
+            if (strpos($result, 'successfully') !== false) {
+                echo json_encode(array("next" => "/thanks.html", "ok" => true));
+            } else {
+                echo json_encode(array("next" => "/error.html", "ok" => false, "error" => $result));
+            }
         } else {
-            return mail($this->to, $this->subject, $email_content, $headers) ? "Email sent successfully!" : "Email sending failed.";
+            echo $result;
         }
+    }
+
+    private function send_with_mail($email_content, $headers) {
+        return mail($this->to, $this->subject, $email_content, $headers) ? "Email sent successfully!" : "Email sending failed.";
     }
 
     private function send_with_smtp($email_content, $headers) {
