@@ -71,7 +71,7 @@
   }
 
   function showSuccessMessage(thisForm) {
-    thisForm.querySelector('.sent-message').style.display = 'block';
+    thisForm.querySelector('.sent-message').classList.add('d-block');
     thisForm.reset();
   }
 
