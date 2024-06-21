@@ -1,4 +1,3 @@
-
 (function () {
   "use strict";
 
@@ -53,15 +52,16 @@
     })
       .then(response => {
         if (response.ok) {
-          return response.json();  // Изменено на JSON
+          return response.json(); // Изменено на JSON
         } else {
           throw new Error(`${response.status} ${response.statusText} ${response.url}`);
         }
       })
       .then(data => {
+        console.log("Response Data:", data); // Отладочный вывод
         thisForm.querySelector('.loading').classList.remove('d-block');
         if (data.ok) {
-          window.location.href = data.next;  // Перенаправление на страницу благодарности
+          window.location.href = data.next; // Перенаправление на страницу благодарности
         } else {
           throw new Error(data ? data : 'Form submission failed and no error message returned from: ' + action);
         }
