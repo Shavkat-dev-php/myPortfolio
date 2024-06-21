@@ -1,7 +1,7 @@
 <?php
 require_once('recaptcha/autoload.php');
 
-$secret_key = 'YOUR_SECRET_KEY_HERE';
+$secret_key = '6LcuC_4pAAAAAO8jWM6bVwmfgy4LPEDoH3JB0Yta';
 $recaptcha = new \ReCaptcha\ReCaptcha($secret_key);
 
 if (!isset($_POST['g-recaptcha-response'])) {
