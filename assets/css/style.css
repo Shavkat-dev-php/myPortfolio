@@ -8,6 +8,7 @@ body {
   color: #fff;
   position: relative;
   background: transparent;
+  /* margin-right: 2000px; !!! body ga margin-right berilmaydi; */
 }
 
 body::before {
@@ -20,6 +21,7 @@ body::before {
   top: 0;
   height: 100vh;
   z-index: -1;
+  /* background ni body ni o'ziga berish mumkin, buning uchun before ishlatish shart emas */
 }
 
 @media (min-width: 1024px) {
@@ -71,6 +73,7 @@ h6 {
   line-height: 1;
   font-weight: 700;
   font-family: "Poppins", sans-serif;
+  /* font-size body ga umumiy qilib beriladi, har bir element uchun alohida yozilmaydi  */
 }
 
 #header h1 a,

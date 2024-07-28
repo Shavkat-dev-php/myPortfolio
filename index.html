@@ -29,16 +29,7 @@
     <link href="assets/css/style.css" rel="stylesheet">
 
 
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <script src="https://www.google.com/recaptcha/enterprise.js?render=6Lfah_gpAAAAAKi2IADWLnj1kuB-FrvmKp6GxRj9"></script>
-    <script>
-      function onClick(e) {
-        e.preventDefault();
-        grecaptcha.enterprise.ready(async () => {
-          const token = await grecaptcha.enterprise.execute('6Lfah_gpAAAAAKi2IADWLnj1kuB-FrvmKp6GxRj9', {action: 'LOGIN'});
-        });
-      }
-    </script>
+
 </head>
 
 <body>
